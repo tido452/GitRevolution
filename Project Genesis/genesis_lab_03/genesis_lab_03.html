@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#0b121f" />
+<title>GENESIS LAB 03 — AI가 새로운 좌표를 발명할 수 있을까?</title>
+<style>
+:root{color-scheme:dark;--bg:#0a111d;--paper:#111c2c;--paper2:#172538;--edge:#2b4057;--text:#eaf2fd;--sub:#9cb0c6;--mint:#57dfc3;--orange:#f0a472;--lilac:#ac9ef5;--ink:#080e18}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse 800px 350px at 8% -5%,#1b5a6260,transparent),radial-gradient(ellipse 700px 430px at 88% 6%,#33275f59,transparent),var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif}button,input,select{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--mint);outline-offset:2px}
+main{max-width:1290px;margin:auto;padding:30px 22px 46px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(29px,4.6vw,49px);letter-spacing:-.055em;line-height:1.15;margin:7px 0 10px}h2{font-size:16px;letter-spacing:-.02em;margin:0}h3{font-size:13px;margin:0 0 5px}.kicker{font-size:11px;letter-spacing:.19em;font-weight:800;color:var(--mint)}.sub{color:var(--sub);font-size:13px}.hero{display:flex;justify-content:space-between;align-items:start;gap:20px;margin-bottom:22px}.hero p{max-width:770px;line-height:1.7;color:#b5c8d8}.chip{border:1px solid #46685d;background:#183932;color:#acebda;border-radius:50px;padding:7px 10px;font-size:11px;white-space:nowrap;font-weight:650}
+.card{background:linear-gradient(147deg,#162538,#0d1827);border:1px solid var(--edge);border-radius:16px;box-shadow:0 7px 25px #0002}.intro{padding:13px 17px;background:#122b30;border-color:#255d5a;margin-bottom:15px;color:#c7e9e4}.intro strong{color:#85efd9}.controls{padding:15px 16px;display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:15px;margin-bottom:15px}.inputs{display:flex;flex-wrap:wrap;gap:11px 14px;align-items:end}.field{display:flex;flex-direction:column;gap:5px}.field label{color:var(--sub);font-size:11px;font-weight:650}.field select,.field input{background:#1e3044;border:1px solid #38536a;border-radius:9px;padding:9px 10px;min-height:38px;max-width:100%}.field select{min-width:150px}.field input{width:95px}.buttons{display:flex;gap:7px;flex-wrap:wrap}button{background:#22374a;border:1px solid #3b596b;border-radius:9px;padding:9px 11px;font-size:12px;font-weight:700;transition:.15s}button:hover{background:#30485c;border-color:#6a92a2}button.primary{background:var(--mint);color:#102831;border-color:var(--mint)}button.primary:hover{background:#a4f5e4}button.ghost{background:transparent;border-color:#3e5469;color:#c7d6e4}button.active{background:#245d5f;border-color:#5bdac4;color:#e9fff9}.layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:15px}.arena,.performance,.learning,.insight{padding:17px}.panehead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}.small{font-size:11px;color:var(--sub)}.mapwrap{max-width:520px;margin:0 auto;position:relative}.mapwrap canvas{width:100%;height:auto;aspect-ratio:1;display:block;border:1px solid #466073;border-radius:10px;touch-action:manipulation;cursor:crosshair;background:#162637}.maptag{position:absolute;left:11px;top:11px;pointer-events:none;border-radius:6px;background:#0a1724d9;border:1px solid #354f63;color:#d3e3f0;font-size:10px;padding:5px 8px}.toggle{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}.toggle button{padding:7px 9px;font-size:11px}.legend{display:flex;gap:15px;flex-wrap:wrap;color:#aabed0;font-size:11px;margin-top:10px}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.hint{font-size:11px;color:#9baec1;margin:9px 0 0}.right{display:flex;flex-direction:column;gap:15px}.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.model{padding:11px;min-width:0;background:#0c1a2a;border:1px solid #30465e;border-radius:11px}.model h3{font-size:11px;color:#d5e1ed;font-weight:750;min-height:19px}.value{font-size:clamp(20px,2.6vw,30px);font-weight:850;line-height:1.15;letter-spacing:-.055em;font-variant-numeric:tabular-nums;margin:7px 0 10px}.value.linear{color:var(--orange)}.value.memory{color:var(--mint)}.value.synth{color:var(--lilac)}.mini{aspect-ratio:1;width:100%;height:auto;max-width:145px;display:block;border-radius:7px;border:1px solid #3d5060;background:#1a283a}.model p{font-size:10px;margin:7px 0 0;color:#9fb4c6;line-height:1.45}.statsline{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:12px;padding:11px 12px;background:#17283b;border:1px solid #2c485b;border-radius:9px;font-size:12px}.statsline span{color:#9fb5c8}.equation{padding:15px;background:#171e38;border:1px solid #47416c;border-radius:11px;margin-top:13px}.equation .eyebrow{font-size:11px;font-weight:750;color:#c8c0ff}.eq{font:600 15px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:#eeeaff;overflow-wrap:anywhere;word-break:break-word;margin:7px 0 5px}.how{font-size:11px;color:#b0acdd}.probe{margin-top:12px;padding:11px 12px;min-height:69px;background:#0d2030;border:1px solid #39536a;border-radius:9px;color:#cadaea;font-size:11px}.probe strong{color:#fff}.learning{flex:1}.curve{width:100%;height:185px;display:block}.keys{display:flex;flex-wrap:wrap;gap:11px;margin-top:3px;color:#a6bed0;font-size:11px}.insight{margin-top:15px;display:grid;grid-template-columns:1.1fr 1fr;gap:14px}.insight p{font-size:12px;color:#aec2d1;margin:0;line-height:1.65}.insight ul{padding-left:18px;margin:7px 0 0;font-size:12px;color:#a9c0d0;line-height:1.8}.callout{background:#162d36;border:1px solid #376269;padding:12px 13px;border-radius:9px;color:#c1e6e4;font-size:12px}.callout b{color:#94eadd}.footer{margin-top:17px;color:#90a7bd;font-size:11px;line-height:1.7}.downloadline{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:13px}.downloadline button{padding:8px 10px}.status{font-size:11px;color:#a4e5d7}
+@media(max-width:940px){.layout{grid-template-columns:1fr}.mapwrap{max-width:530px}.value{font-size:25px}.hero{display:block}.chip{display:inline-block;margin:3px 0 0}.insight{grid-template-columns:1fr}}@media(max-width:530px){main{padding:18px 11px 35px}.arena,.performance,.learning,.insight{padding:12px}.controls{padding:12px}.field{flex:1;min-width:130px}.field select{min-width:0;width:100%}.three{gap:5px}.model{padding:7px}.model h3{font-size:10px;min-height:32px}.value{font-size:19px}.model p{font-size:9px}.intro{padding:10px 12px}}
+</style>
+</head>
+<body>
+<main>
+<header class="hero"><div><div class="kicker">PROJECT GENESIS / EXPERIMENT 03</div><h1>AI가 <span style="color:var(--lilac)">새로운 좌표</span>를<br>스스로 만들 수 있을까?</h1><p>입력은 오직 <strong>x, y</strong>. 사람이 정답 공식을 알려주지 않은 상태에서 AI가 기본 연산 <strong>+, −, ×</strong>를 조합해 새로운 특징 z=f(x,y)를 만들고, 관측한 규칙을 설명하는지 확인해보자.</p></div><span class="chip">● 100% OFFLINE · 로컬 실험</span></header>
+<section class="card intro"><strong>추천 실험</strong> · <b>XOR</b>에서 <b>+40개</b>를 누른 뒤 새 좌표 <code>z=x×y</code>를 발견하는지 봐. 이어서 <b>원형 영역</b>을 선택하고 동일하게 시험해 봐. 마지막에는 <b>물결 경계</b>에서 모델의 한계도 살펴보자.</section>
+<section class="card controls"><div class="inputs">
+<div class="field"><label for="world">숨겨진 세계의 법칙</label><select id="world"><option value="xor">XOR · 엇갈린 사분면</option><option value="circle">원형 영역</option><option value="parabola">포물선 경계</option><option value="diagonal">직선 경계 · 대조군</option><option value="wave">물결 경계 · 반례</option></select></div>
+<div class="field"><label for="sampling">관측 위치</label><select id="sampling"><option value="uniform">전체 공간</option><option value="left">왼쪽 절반만</option></select></div>
+<div class="field"><label for="noise">정답의 오류율</label><select id="noise"><option value="0">0%</option><option value="0.05">5%</option><option value="0.15">15%</option></select></div>
+<div class="field"><label for="seed">난수 시드</label><input type="number" id="seed" value="20261028" step="1" /></div>
+</div><div class="buttons"><button id="add10">+10 관측</button><button class="primary" id="add40">+40 관측</button><button id="add120">+120 관측</button><button id="reset" class="ghost">↺ 초기화</button></div></section>
+<div class="layout">
+<section class="card arena"><div class="panehead"><h2>관측 공간 · 2차원 세계</h2><span class="small" id="viewTitle">새 좌표 모델의 예측</span></div>
+<div class="mapwrap"><canvas id="worldCanvas" width="520" height="520" aria-label="2차원 지도. 클릭하면 샘플을 추가하거나 세 모델의 예측을 검사합니다."></canvas><span class="maptag" id="mapTag">선택한 모델의 분류 영역</span></div>
+<div class="legend"><span><i class="dot" style="background:var(--orange)"></i>클래스 0</span><span><i class="dot" style="background:var(--mint)"></i>클래스 1</span><span>◉ 관측된 사례</span></div>
+<div class="toggle" id="views"><button data-view="truth">정답 영역</button><button data-view="linear">선형 모델</button><button data-view="memory">기억 모델</button><button data-view="synth" class="active">새 좌표 모델</button></div>
+<div class="toggle" id="modes"><button data-mode="train" class="active">＋ 클릭으로 관측 추가</button><button data-mode="test">◎ 클릭으로 시험</button></div><p class="hint">시험 모드에서는 결과를 확인하기만 하며, 모델 학습에는 영향을 주지 않아.</p></section>
+<div class="right"><section class="card performance"><div class="panehead"><h2>처음 보는 데이터에서의 정확도</h2><span class="small">독립 시험점 900개</span></div>
+<div class="three"><div class="model"><h3>① 선형 분류</h3><div class="value linear" id="linearScore">—</div><canvas class="mini" width="150" height="150" id="linearMini"></canvas><p>원래 좌표 x, y만 학습</p></div><div class="model"><h3>② 사례 기억</h3><div class="value memory" id="memoryScore">—</div><canvas class="mini" width="150" height="150" id="memoryMini"></canvas><p>가까운 경험 5개 검색</p></div><div class="model"><h3>③ 새 좌표 생성</h3><div class="value synth" id="synthScore">—</div><canvas class="mini" width="150" height="150" id="synthMini"></canvas><p>수식 후보 생성·검증</p></div></div>
+<div class="statsline"><div><span>관측 </span><b id="sampleCount">0</b><span>개</span> <span>· 학습 </span><b id="trainCount">0</b> <span>· 검증 </span><b id="validationCount">0</b></div><div><span>생성한 특징 후보 </span><b id="candidateCount">—</b><span>개</span></div></div>
+<div class="equation"><div class="eyebrow">발견된 표현 · NEW REPRESENTATION</div><div class="eq" id="formula">아직 충분한 경험이 없습니다</div><div class="how" id="ruleInfo">관측 데이터가 모이면 모델이 연산식을 탐색합니다.</div></div>
+<div class="probe" id="probe"><strong>직접 시험해보기</strong> · 위에서 ‘클릭으로 시험’을 선택해 지도 속 한 점을 눌러봐.</div>
+<div class="downloadline"><button id="export" class="ghost">↓ 실험 기록 CSV</button><span class="status" id="status">관측을 추가해보자.</span></div>
+</section>
+<section class="card learning"><div class="panehead"><h2>관측이 늘어날 때 성능 변화</h2><span class="small">실험 과정 기록</span></div><canvas id="curveCanvas" class="curve"></canvas><div class="keys"><span><i class="dot" style="background:var(--orange)"></i>선형 분류</span><span><i class="dot" style="background:var(--mint)"></i>사례 기억</span><span><i class="dot" style="background:var(--lilac)"></i>새 좌표 생성</span></div></section></div></div>
+<section class="card insight"><div><h2>이번 실험에서 검증하려는 것</h2><ul><li><strong>선형 모델:</strong> 기존 표현 x,y만 사용해 분류한다.</li><li><strong>기억 모델:</strong> 관측 지점을 저장하고 가장 가까운 5개를 활용한다.</li><li><strong>좌표 생성 모델:</strong> 기본 연산을 결합해 후보 표현들을 만든 후, <strong>훈련·검증 데이터만</strong>으로 표현을 선택한다.</li></ul></div><div class="callout"><b>중요한 한계</b><br>모델이 연산 자체를 발명한 것은 아니야. 사람이 제공한 연산 문법(<b>+, −, ×</b>) 안에서 식을 생성하는 <b>기호적 특징 탐색</b>이야. 새로운 데이터를 볼 때마다 <b>정답 라벨이 제공되는 지도학습</b>이고, 이 실험만으로 자율적인 과학적 직관이 구현됐다고 할 수는 없어. 왼쪽 절반만 관측하면 식을 식별하지 못할 수도 있어.</div></section>
+<footer class="footer">공정성 메모: 세 모델 모두 동일한 관측 데이터에서 학습한다. 훈련/검증 자료는 나눠 사용하고, 별도로 생성한 시험점 900개는 모델 선택에 쓰지 않는다. 새 좌표 모델은 최대 식 복잡도 7의 연산식 중 검증 오류와 복잡도 패널티가 낮은 식을 택한다. 사용자가 시험 정확도를 보고 환경이나 시드를 반복 선택할 경우 그것은 탐색적 실험이며, 논문 수준의 독립 최종 검증은 별도 데이터로 다시 해야 한다.</footer>
+</main>
+<script>
+/* GENESIS 03: explicit symbolic feature construction. No target-rule-specific code in the learner. */
+(function (root) {
+  'use strict';
+  function rng(seed){let s=seed>>>0;return function(){s+=0x6D2B79F5;let t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};}
+  const worlds={
+    xor:{name:'XOR · 엇갈린 사분면',fn:(x,y)=>+(x*y>0),description:'대각선 방향의 두 구역이 같은 분류인 세계'},
+    circle:{name:'원형 영역',fn:(x,y)=>+(x*x+y*y<.44),description:'중심까지의 거리가 일정한 범위 안이면 1'},
+    parabola:{name:'포물선 경계',fn:(x,y)=>+(y>.05+.85*x*x),description:'곡선 위쪽과 아래쪽의 분류가 다른 세계'},
+    diagonal:{name:'직선 경계 · 대조군',fn:(x,y)=>+(x+y>.22),description:'새 특징 없이도 선형 모델이 풀 수 있는 세계'},
+    wave:{name:'물결 경계 · 한계 실험',fn:(x,y)=>+(Math.sin(3.5*Math.PI*x)>0),description:'현재 연산 문법에 없는 여러 개의 세로 줄무늬 영역'}
+  };
+  const anchors=(()=>{const r=rng(34923);return Array.from({length:16},()=>[r()*1.8-.9,r()*1.8-.9]);})();
+  function fingerprint(v){
+    const mean=v.reduce((a,b)=>a+b,0)/v.length;
+    let dev=Math.sqrt(v.reduce((a,b)=>a+(b-mean)*(b-mean),0)/v.length);
+    if(dev<1e-9||!isFinite(dev))return null;
+    let norm=v.map(a=>(a-mean)/dev), first=norm.find(a=>Math.abs(a)>1e-7)||0;
+    if(first<0)norm=norm.map(a=>-a);
+    return norm.map(a=>Math.round(a*2000)).join(':');
+  }
+  function makeLibrary(maxComplexity=7){
+    const levels=new Map(),all=[],seen=new Set();
+    function add(node){
+      const sig=fingerprint(node.probes);if(!sig||seen.has(sig))return;
+      seen.add(sig);all.push(node);if(!levels.has(node.cost))levels.set(node.cost,[]);levels.get(node.cost).push(node);
+    }
+    add({repr:'x',op:'x',cost:1,probes:anchors.map(p=>p[0])});
+    add({repr:'y',op:'y',cost:1,probes:anchors.map(p=>p[1])});
+    for(let complexity=3;complexity<=maxComplexity;complexity+=2){
+      for(let left=1;left<complexity;left+=2){
+        const right=complexity-1-left;
+        if(right<1)continue;
+        for(const a of (levels.get(left)||[])) for(const b of (levels.get(right)||[])){
+          for(const op of ['+','−','×']){
+            if((op==='+'||op==='×')&&a.repr>b.repr)continue;
+            if(op==='−'&&a.repr===b.repr)continue;
+            const probes=a.probes.map((p,i)=>op==='+'?p+b.probes[i]:op==='−'?p-b.probes[i]:p*b.probes[i]);
+            add({op,a,b,cost:complexity,repr:`(${a.repr} ${op} ${b.repr})`,probes});
+          }
+        }
+      }
+    }
+    return all;
+  }
+  function value(node,x,y){
+    if(node.op==='x')return x;if(node.op==='y')return y;
+    const a=value(node.a,x,y),b=value(node.b,x,y);
+    return node.op==='+'?a+b:node.op==='−'?a-b:a*b;
+  }
+  function fitLinear(data){
+    if(data.length<4)return {w:[0,0,0],predict:(x,y)=>0};
+    let w=[0,0,0];
+    for(let iter=0;iter<500;iter++){
+      let g0=0,g1=0,g2=0;
+      for(const d of data){let z=Math.max(-30,Math.min(30,w[0]+w[1]*d.x+w[2]*d.y));let err=1/(1+Math.exp(-z))-d.label;g0+=err;g1+=err*d.x;g2+=err*d.y;}
+      const rate=.9/data.length;
+      w[0]-=rate*g0;w[1]-=rate*(g1+.006*w[1]*data.length);w[2]-=rate*(g2+.006*w[2]*data.length);
+    }
+    return {w,predict:(x,y)=>+(w[0]+w[1]*x+w[2]*y>=0)};
+  }
+  function fitThreshold(node,training){
+    let items=training.map(d=>({v:value(node,d.x,d.y),y:d.label})).sort((a,b)=>a.v-b.v);
+    let totalPos=items.reduce((s,d)=>s+d.y,0),totalNeg=items.length-totalPos;
+    let leftPos=0,leftNeg=0,best={mistakes:Infinity,threshold:0,positiveRight:true};
+    function consider(thresh){
+      const rightPos=totalPos-leftPos,rightNeg=totalNeg-leftNeg;
+      const errRight=leftPos+rightNeg,errLeft=leftNeg+rightPos;
+      if(errRight<best.mistakes)best={mistakes:errRight,threshold:thresh,positiveRight:true};
+      if(errLeft<best.mistakes)best={mistakes:errLeft,threshold:thresh,positiveRight:false};
+    }
+    if(!items.length)return best;
+    consider(items[0].v-1e-6);
+    for(let i=0;i<items.length;){
+      let j=i;while(j<items.length&&Math.abs(items[j].v-items[i].v)<1e-10)j++;
+      for(let k=i;k<j;k++){if(items[k].y)leftPos++;else leftNeg++;}
+      consider(j<items.length?(items[j-1].v+items[j].v)/2:items[j-1].v+1e-6);
+      i=j;
+    }
+    return best;
+  }
+  const thresholdPredict=(node,fit,x,y)=>+(fit.positiveRight?(value(node,x,y)>=fit.threshold):(value(node,x,y)<fit.threshold));
+  function fitSymbolic(training,validation,library){
+    if(training.length<10||validation.length<4)return {ready:false,reason:'훈련 10개·검증 4개 이상 필요'};
+    let best=null;
+    for(const node of library){
+      const fit=fitThreshold(node,training);
+      let valWrong=0;
+      for(const d of validation){if(thresholdPredict(node,fit,d.x,d.y)!==d.label)valWrong++;}
+      const trError=fit.mistakes/training.length,valError=valWrong/validation.length;
+      // Simplicity penalty discourages complex formulas with tiny gains.
+      const score=.55*valError+.45*trError+.008*(node.cost-1);
+      if(best===null||score<best.score-1e-12||Math.abs(score-best.score)<1e-12&&node.cost<best.node.cost){
+        best={ready:true,node,fit,score,trError,valError,predict:(x,y)=>thresholdPredict(node,fit,x,y)};
+      }
+    }
+    return best;
+  }
+  function fitMemory(training){
+    return {predict:(x,y)=>{
+      if(!training.length)return 0;
+      const nearest=training.map(p=>({dist:(p.x-x)**2+(p.y-y)**2,label:p.label})).sort((a,b)=>a.dist-b.dist).slice(0,Math.min(5,training.length));
+      let z=0,tot=0;for(const n of nearest){const weight=1/(Math.sqrt(n.dist)+.045);z+=weight*n.label;tot+=weight;}
+      return +(z>=.5*tot);
+    }};
+  }
+  function accuracy(model,data){return data.reduce((s,p)=>s+(model.predict(p.x,p.y)===p.label),0)/Math.max(1,data.length);}
+  function createSamples(seed,count,world,noise=0,sampling='uniform'){
+    const r=rng(seed),w=worlds[world];const points=[];
+    for(let i=0;i<count;i++){let x=(sampling==='left'?r()-1:r()*2-1),y=r()*2-1;let label=w.fn(x,y);if(r()<noise)label=1-label;points.push({x,y,label});}
+    return points;
+  }
+  function makeSplit(samples,seed=42){const r=rng(seed);let train=[],validation=[];samples.forEach(d=>{(r()<.22?validation:train).push(d);});return {train,validation};}
+  root.GENESIS_CORE={rng,worlds,makeLibrary,value,fitLinear,fitThreshold,fitSymbolic,fitMemory,accuracy,createSamples,makeSplit};
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+</script>
+<script>
+(()=>{'use strict';
+const C=globalThis.GENESIS_CORE,$=id=>document.getElementById(id);
+const library=C.makeLibrary(7);
+const state={world:'xor',view:'synth',mode:'train',sampling:'uniform',noise:0,seed:20261028,observed:[],history:[],probe:null};
+let sampler=C.rng(state.seed),testset=[],models={},last={};
+function fix(n){return Number.isFinite(n)?n.toFixed(2):'—'}
+function pct(n){return Number.isFinite(n)?(100*n).toFixed(1)+'%':'—'}
+function readControls(){state.world=$('world').value;state.sampling=$('sampling').value;state.noise=Number($('noise').value);state.seed=(Number($('seed').value)||20261028)|0;}
+function reset(){readControls();state.observed=[];state.history=[];state.probe=null;sampler=C.rng(state.seed);testset=C.createSamples((state.seed ^ 0x2367a65)>>>0,900,state.world,0);refresh(true);$('probe').innerHTML='<strong>직접 시험해보기</strong> · 위에서 ‘클릭으로 시험’을 선택해 지도 속 한 점을 눌러봐.';$('status').textContent='관측을 추가해보자.';}
+function observe(n){if(state.observed.length+n>650)n=Math.max(0,650-state.observed.length);for(let i=0;i<n;i++){const x=(state.sampling==='left'?sampler()-1:sampler()*2-1),y=sampler()*2-1;addPoint(x,y);}refresh();$('status').textContent=n?`관측 ${n}개를 추가했어.`:'최대 650개까지 관측할 수 있어.';}
+function addPoint(x,y){const trueLabel=C.worlds[state.world].fn(x,y);const label=(sampler()<state.noise)?1-trueLabel:trueLabel;state.observed.push({x,y,label});}
+function refresh(silent=false){
+ const split=C.makeSplit(state.observed,72813);models={};last={n:state.observed.length};
+ if(split.train.length>=4){models.linear=C.fitLinear(split.train);models.memory=C.fitMemory(split.train);last.linear=C.accuracy(models.linear,testset);last.memory=C.accuracy(models.memory,testset);}
+ models.synth=C.fitSymbolic(split.train,split.validation,library);
+ if(models.synth.ready)last.synth=C.accuracy(models.synth,testset);
+ last.train=split.train.length;last.validation=split.validation.length;
+ $('sampleCount').textContent=last.n;$('trainCount').textContent=last.train;$('validationCount').textContent=last.validation;$('candidateCount').textContent=library.length;
+ for(const id of ['linear','memory','synth']){$(id+'Score').textContent=pct(last[id]);}
+ if(models.synth.ready){
+  const m=models.synth;$('formula').textContent=`z = ${m.node.repr}  →  클래스 1 ⇔ z ${m.fit.positiveRight?'≥':'<'} ${fix(m.fit.threshold)}`;
+  $('ruleInfo').textContent=`연산식 길이 ${m.node.cost} · 훈련 오류 ${pct(m.trError)} · 검증 오류 ${pct(m.valError)} · 식 복잡도 패널티 적용`;
+ }else{$('formula').textContent='아직 새로운 좌표를 찾지 않았어';$('ruleInfo').textContent='훈련 표본 10개와 검증 표본 4개 이상이 필요해.';}
+ if(!silent){const prev=state.history[state.history.length-1];if(!prev||prev.n!==last.n)state.history.push({...last});else state.history[state.history.length-1]={...last};}
+ drawAll();
+}
+function currentPredict(v){if(v==='truth')return C.worlds[state.world].fn;return models[v]&&(!('ready' in models[v])||models[v].ready)?models[v].predict:null;}
+function drawField(canvas,view,points=false){
+ const ctx=canvas.getContext('2d'),width=canvas.width,height=canvas.height,fn=currentPredict(view),count=(width>300?130:75),tmp=document.createElement('canvas');tmp.width=count;tmp.height=count;const tc=tmp.getContext('2d'),img=tc.createImageData(count,count);
+ for(let j=0;j<count;j++)for(let i=0;i<count;i++){
+  const x=(i+.5)/count*2-1,y=1-(j+.5)/count*2,output=fn?fn(x,y):null,idx=(j*count+i)*4;
+  let col=output===1?[32,101,101]:output===0?[126,70,58]:[37,52,72];
+  for(let k=0;k<3;k++)img.data[idx+k]=col[k];img.data[idx+3]=255;
+ }
+ tc.putImageData(img,0,0);ctx.clearRect(0,0,width,height);ctx.imageSmoothingEnabled=true;ctx.drawImage(tmp,0,0,width,height);
+ ctx.strokeStyle='rgba(230,241,255,.12)';ctx.lineWidth=1;
+ for(let g=1;g<4;g++){let z=g/4*width;ctx.beginPath();ctx.moveTo(z,0);ctx.lineTo(z,height);ctx.stroke();ctx.beginPath();ctx.moveTo(0,z);ctx.lineTo(width,z);ctx.stroke();}
+ ctx.strokeStyle='rgba(239,246,255,.27)';ctx.beginPath();ctx.moveTo(width/2,0);ctx.lineTo(width/2,height);ctx.moveTo(0,height/2);ctx.lineTo(width,height/2);ctx.stroke();
+ if(points){
+  for(const d of state.observed){const px=(d.x+1)/2*width,py=(1-d.y)/2*height;ctx.beginPath();ctx.arc(px,py,3.7,0,Math.PI*2);ctx.fillStyle=d.label===1?'#5cf0d3':'#ffc097';ctx.fill();ctx.strokeStyle='#071522';ctx.lineWidth=1.15;ctx.stroke();}
+  if(state.probe){const {x,y}=state.probe,px=(x+1)/2*width,py=(1-y)/2*height;ctx.beginPath();ctx.arc(px,py,7,0,Math.PI*2);ctx.strokeStyle='#e7ccff';ctx.lineWidth=3;ctx.stroke();}
+ }
+}
+function drawCurve(){const c=$('curveCanvas'),ratio=Math.min(2,window.devicePixelRatio||1);const w=Math.max(280,Math.round(c.clientWidth)),h=185;c.width=Math.round(w*ratio);c.height=Math.round(h*ratio);const ctx=c.getContext('2d');ctx.scale(ratio,ratio);ctx.clearRect(0,0,w,h);let L=36,R=11,T=12,B=27,PW=w-L-R,PH=h-T-B;
+ ctx.font='10px -apple-system,sans-serif';ctx.fillStyle='#91abc1';ctx.strokeStyle='#31465b';ctx.lineWidth=1;
+ for(let pctValue=0;pctValue<=100;pctValue+=25){const y=T+PH*(1-pctValue/100);ctx.beginPath();ctx.moveTo(L,y);ctx.lineTo(w-R,y);ctx.stroke();ctx.fillText(`${pctValue}%`,3,y+3);}
+ const high=Math.max(40,...state.history.map(r=>r.n));ctx.fillText('0',L,h-8);ctx.fillText(`${high}회`,Math.max(L,w-R-30),h-8);
+ if(!state.history.length){ctx.fillStyle='#a0b4c6';ctx.fillText('관측을 추가하면 그래프가 시작돼.',L+14,T+PH*.5);return;}
+ for(const [key,color] of [['linear','#f0a472'],['memory','#57dfc3'],['synth','#ac9ef5']]){
+  let started=false;ctx.beginPath();ctx.strokeStyle=color;ctx.lineWidth=2.7;for(const r of state.history){if(!Number.isFinite(r[key])){started=false;continue;}let x=L+r.n/high*PW,y=T+(1-r[key])*PH;if(!started){ctx.moveTo(x,y);started=true;}else ctx.lineTo(x,y);}
+  ctx.stroke();for(const r of state.history){if(!Number.isFinite(r[key]))continue;ctx.beginPath();ctx.arc(L+r.n/high*PW,T+(1-r[key])*PH,2.4,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();}
+ }
+}
+function drawAll(){drawField($('worldCanvas'),state.view,true);for(const id of ['linear','memory','synth'])drawField($(id+'Mini'),id,false);drawCurve();
+ const title={truth:'실제 정답',linear:'선형 모델의 예측',memory:'사례 기억 모델의 예측',synth:'새 좌표 모델의 예측'}[state.view];$('viewTitle').textContent=title;$('mapTag').textContent=title;
+ for(const button of document.querySelectorAll('#views button'))button.classList.toggle('active',button.dataset.view===state.view);
+ for(const button of document.querySelectorAll('#modes button'))button.classList.toggle('active',button.dataset.mode===state.mode);
+}
+function probe(x,y){const world=C.worlds[state.world],parts=[`실제 정답 <b>${world.fn(x,y)}</b>`];for(const key of ['linear','memory','synth']){const p=currentPredict(key);parts.push(`${{linear:'선형',memory:'기억',synth:'좌표 생성'}[key]} <b>${p?p(x,y):'—'}</b>`);}$('probe').innerHTML=`<strong>시험 위치</strong> (${x.toFixed(2)}, ${y.toFixed(2)})<br>${parts.join(' · ')}`;state.probe={x,y};drawAll();}
+function exportCsv(){
+ const fields=['record_type','world','seed','sampling','noise','n','x','y','label','linear_accuracy','memory_accuracy','synth_accuracy','feature','threshold','polarity'];
+ const general=['summary',state.world,state.seed,state.sampling,state.noise,state.observed.length,'','','',last.linear??'',last.memory??'',last.synth??'',models.synth.ready?models.synth.node.repr:'',models.synth.ready?models.synth.fit.threshold:'',models.synth.ready?(models.synth.fit.positiveRight?'>=':'<'):''];
+ const csv=[fields.join(','),general.map(csvField).join(','),...state.observed.map((d,i)=>['observation',state.world,state.seed,state.sampling,state.noise,i+1,d.x,d.y,d.label,'','','','','',''].map(csvField).join(','))].join('\r\n');
+ const url=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='genesis03_experiment.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function csvField(s){const t=String(s);return /[",\r\n]/.test(t)?'"'+t.replaceAll('"','""')+'"':t;}
+for(const [btn,n] of [['add10',10],['add40',40],['add120',120]])$(btn).addEventListener('click',()=>observe(n));
+$('reset').addEventListener('click',reset);$('export').addEventListener('click',exportCsv);
+$('world').addEventListener('change',reset);$('seed').addEventListener('change',reset);
+for(const id of ['sampling','noise'])$(id).addEventListener('change',()=>{state.sampling=$('sampling').value;state.noise=Number($('noise').value);$('status').textContent='다음 관측부터 새 설정이 적용돼.';});
+$('views').addEventListener('click',e=>{const b=e.target.closest('button[data-view]');if(b){state.view=b.dataset.view;drawAll();}});
+$('modes').addEventListener('click',e=>{const b=e.target.closest('button[data-mode]');if(b){state.mode=b.dataset.mode;drawAll();}});
+$('worldCanvas').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect(),x=Math.max(-1,Math.min(1,2*(e.clientX-r.left)/r.width-1)),y=Math.max(-1,Math.min(1,1-2*(e.clientY-r.top)/r.height));if(state.mode==='test')probe(x,y);else{addPoint(x,y);refresh();$('status').textContent='직접 선택한 위치를 관측했어.';}});
+window.addEventListener('resize',drawCurve);
+reset();
+})();
+</script>
+</body></html>

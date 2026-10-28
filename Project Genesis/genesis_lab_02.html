@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GENESIS LAB 02 — 기억과 규칙 발견</title>
+<style>
+:root{color-scheme:dark;--bg:#08121d;--panel:#111f2e;--panel2:#17283a;--border:#2a4255;--text:#eaf3fc;--muted:#9ab0c2;--orange:#f6ab70;--mint:#69d6cc;--violet:#c39eff}
+*{box-sizing:border-box}body{margin:0;font:14px/1.55 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:radial-gradient(ellipse 900px 330px at 10% -7%,#18394a8f,transparent),radial-gradient(ellipse 600px 500px at 97% 25%,#39285655,transparent),var(--bg);color:var(--text)}
+main{max-width:1260px;margin:0 auto;padding:30px 22px 48px}h1{font-size:clamp(29px,4.2vw,44px);letter-spacing:-.045em;line-height:1.12;margin:5px 0 9px}h2{font-size:16px;margin:0}h3{font-size:14px;margin:0}.kicker{letter-spacing:.18em;color:var(--mint);font-weight:800;font-size:11px}.sub{color:var(--muted);max-width:900px;margin:0 0 20px}.tag{font-size:11px;letter-spacing:.07em;padding:6px 10px;border-radius:99px;border:1px solid #4a7c69;background:#16352c;color:#95e4d0;white-space:nowrap}.header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.card{border:1px solid var(--border);border-radius:16px;background:linear-gradient(150deg,#152537,#0e1b2a);box-shadow:0 10px 25px #0002}.introduction{padding:14px 17px;margin-bottom:16px;color:#ccdae6;background:#142a30;border-color:#2e5257}.introduction b{color:#90eadb}.controls{display:flex;align-items:center;justify-content:space-between;gap:13px;flex-wrap:wrap;padding:15px 17px;margin-bottom:16px}.selectors{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.field{display:flex;align-items:center;gap:8px}.field label,.tiny{font-size:12px;color:var(--muted)}button,select{font:inherit;color:var(--text)}button{padding:9px 12px;background:#213449;border:1px solid #405669;border-radius:9px;cursor:pointer;font-weight:750;transition:.1s}button:hover{background:#30485b;border-color:#7094ac}button:focus-visible,select:focus-visible{outline:2px solid var(--mint);outline-offset:2px}button.primary{background:var(--mint);border-color:var(--mint);color:#0a2a2e}button.primary:hover{background:#9cf0e4}button.warn{color:#ffd6ca}button.active{background:#2a5d63;border-color:#79d4ce}select{min-width:148px;background:#203348;border:1px solid #3e5365;border-radius:8px;padding:8px 28px 8px 9px}.buttonset{display:flex;gap:7px;flex-wrap:wrap}.layout{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(315px,.94fr);gap:15px}.arenaPanel,.stats,.chartPanel{padding:17px}.paneHead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px}.arenaWrap{width:min(100%,530px);margin:0 auto;position:relative}#world{display:block;width:100%;aspect-ratio:1;cursor:crosshair;border:1px solid #4a6476;border-radius:9px;touch-action:manipulation}.overlayBadge{position:absolute;left:12px;top:12px;border:1px solid #354a5f;color:#d7eaf7;background:#071520ce;padding:4px 8px;border-radius:6px;font-size:11px;pointer-events:none}.legend{font-size:12px;color:#acc1cf;display:flex;gap:13px;flex-wrap:wrap;margin-top:11px}.dot{width:10px;height:10px;display:inline-block;vertical-align:middle;border-radius:50%;margin-right:5px}.toggleRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}.toggleRow button{font-size:12px;padding:7px 10px}.subnote{color:var(--muted);font-size:12px;margin:9px 0 0}.right{display:flex;flex-direction:column;gap:15px}.metricgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.metric{border:1px solid #34485b;background:#0b1a28;padding:11px 10px;border-radius:12px;min-width:0}.metricHead{font-size:11px;line-height:1.35;color:#becddd;min-height:30px}.metricVal{font-weight:850;font-size:clamp(19px,2.5vw,28px);letter-spacing:-.045em;margin:7px 0 3px;font-variant-numeric:tabular-nums}.metricFoot{color:#93a7b9;font-size:10px;min-height:29px}.orange{color:var(--orange)}.mint{color:var(--mint)}.violet{color:var(--violet)}.modelExplain{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}.exp{border:1px solid #354b5b;background:#18293b;border-radius:9px;padding:10px 12px;font-size:12px}.exp strong{color:#e2f0fb}.exp code{color:#c7adff;word-break:break-word;font:11px/1.5 ui-monospace,Menlo,monospace}.probe{margin-top:12px;border:1px solid #3d5368;border-radius:10px;background:#0d1f31;padding:12px;min-height:94px;font-size:12px}.probe b{font-weight:800}.chartPanel{flex:1}.chart{width:100%;height:180px;display:block}.chartLegend{display:flex;gap:13px;flex-wrap:wrap;color:#b6cad8;font-size:11px}.ruleCards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:16px}.ruleCard{padding:16px}.ruleCard h3{margin:0 0 7px}.ruleCard p{margin:0;color:#a8bfce;font-size:12px}.footer{padding-top:18px;color:#8ea6b7;font-size:12px}.alert{border-left:3px solid var(--violet);padding-left:13px;margin-top:12px;font-size:12px;color:#b9c8dc}output{font-variant-numeric:tabular-nums}.status{color:#a7e1d2;font-size:12px}.divider{height:1px;background:#304758;margin:8px 0}@media(max-width:920px){.layout{grid-template-columns:1fr}.header{display:block}.tag{display:inline-block;margin-bottom:14px}.ruleCards{grid-template-columns:1fr}.arenaWrap{max-width:540px}.metricVal{font-size:clamp(22px,4vw,30px)}}@media(max-width:480px){main{padding:19px 11px 36px}.metric{padding:9px 7px}.metricVal{font-size:21px}.metricHead{font-size:10px}.controls{padding:12px}.stats,.chartPanel,.arenaPanel{padding:13px}button{padding:8px 9px}.field{align-items:flex-start;flex-direction:column;gap:3px}select{min-width:125px}}
+</style>
+</head>
+<body>
+<main>
+<header class="header"><div><div class="kicker">PROJECT GENESIS / EXPERIMENT 02</div><h1>기억하는 AI vs <span class="violet">법칙을 찾는 AI</span></h1><p class="sub">가중치는 그대로 둔다. 세 모델에 동일한 관측 사례를 주고, <strong>외운 사례를 검색하는 것</strong>과 <strong>일반적인 규칙을 추정하는 것</strong>을 비교해보자.</p></div><div class="tag">● ONLINE LEARNING / NO WEIGHT UPDATE</div></header>
+<div class="card introduction"><b>추천 실험</b> — ‘반대 대각선’ 환경에서 <b>+10개 관측</b>을 누르고 정답률을 비교해봐. 그다음 ‘XOR: 네 구역’으로 바꿔 같은 실험을 해봐. 규칙 모델은 <b>직선과 원</b>만 가정하기 때문에, 두 번째 환경에서 약점을 드러낼 수 있어.</div>
+<section class="card controls">
+  <div class="selectors">
+    <div class="field"><label for="environment">숨은 세계의 법칙</label><select id="environment"><option value="reverse">반대 대각선 (추천)</option><option value="vertical">오른쪽 경계</option><option value="circle">중앙의 원</option><option value="xor">XOR: 네 구역 (반례)</option><option value="wave">물결 모양 (반례)</option><option value="original">원래 학습한 규칙</option></select></div>
+    <div class="field"><label for="sampling">관측 위치</label><select id="sampling"><option value="uniform">전체에서 무작위</option><option value="left">왼쪽 절반만</option></select></div>
+  </div>
+  <div class="buttonset"><button id="add1">+1개 관측</button><button id="add10" class="primary">+10개 관측</button><button id="add50">+50개 관측</button><button id="add200">+200개 관측</button><button id="reset" class="warn">관측 초기화</button></div>
+</section>
+<div class="layout"><section class="card arenaPanel">
+  <div class="paneHead"><h2>가상 세계 · 2차원 분류</h2><span class="tiny" id="currentEnvironment">반대 대각선</span></div>
+  <div class="arenaWrap"><canvas id="world" aria-label="2차원 분류 영역. 마우스 또는 터치로 학습 사례를 추가하거나 예측을 시험할 수 있습니다."></canvas><span id="overlayBadge" class="overlayBadge">실제 정답 영역 · 클릭 = 관측</span></div>
+  <div class="legend"><span><i class="dot" style="background:var(--orange)"></i>주황 분류</span><span><i class="dot" style="background:var(--mint)"></i>민트 분류</span><span><i class="dot" style="background:var(--violet)"></i>마지막 시험점</span></div>
+  <div class="toggleRow"><button id="modeTrain" class="active">+ 클릭해서 관측</button><button id="modeTest">◎ 클릭해서 시험</button></div>
+  <div class="toggleRow"><button class="active" data-view="truth">실제 정답</button><button data-view="frozen">고정 모델</button><button data-view="memory">기억 모델</button><button data-view="rule">규칙 모델</button></div>
+  <p class="subnote">점들은 학습할 때 관측한 좌표와 정답. 시험 모드에서 클릭하면 어느 모델에도 데이터가 추가되지 않아.</p>
+</section>
+<div class="right">
+  <section class="card stats"><div class="paneHead"><h2>보지 못한 시험점에서의 정확도</h2><span class="tiny">동일한 홀드아웃 점 800개</span></div>
+    <div class="metricgrid">
+      <div class="metric"><div class="metricHead">① 고정 모델</div><div id="frozenAccuracy" class="metricVal orange">—</div><div class="metricFoot">학습 완료, 업데이트 0회</div></div>
+      <div class="metric"><div class="metricHead">② 사례 기억 (k-NN)</div><div id="memoryAccuracy" class="metricVal mint">—</div><div class="metricFoot">가까운 사례 5개 검색</div></div>
+      <div class="metric"><div class="metricHead">③ 규칙 발견</div><div id="ruleAccuracy" class="metricVal violet">—</div><div class="metricFoot">후보 법칙의 오류 최소화</div></div>
+    </div>
+    <div class="modelExplain"><div class="exp"><strong>관측된 사례</strong> <output id="observations">0</output>개 · <strong>채택한 규칙</strong> <code id="hypothesis">아직 관측되지 않음</code><div class="tiny" id="trainingError">규칙 추정은 관측 3개부터 시작</div></div></div>
+    <div class="probe" id="probe"><b>시험해보기</b><br><span class="tiny">‘클릭해서 시험’을 누른 뒤 지도를 클릭해봐. 세 모델의 예측과 실제 정답을 보여줄게.</span></div>
+  </section>
+  <section class="card chartPanel"><div class="paneHead"><h2>경험이 쌓일 때 정확도 변화</h2><span id="chartCount" class="tiny">관측 0개</span></div><canvas id="chart" class="chart" aria-label="관측 횟수별 모델 정확도 그래프"></canvas><div class="chartLegend"><span><i class="dot" style="background:var(--orange)"></i>고정</span><span><i class="dot" style="background:var(--mint)"></i>기억</span><span><i class="dot" style="background:var(--violet)"></i>규칙</span></div><div class="alert">‘규칙 발견’은 만능이 아니야. 가능한 법칙의 종류를 사람이 미리 제한해 놓았어. 그래서 보지 못한 구간으로 일반화할 수도 있지만, 가정에 없는 형태라면 체계적으로 틀릴 수도 있어.</div></section>
+</div></div>
+<section class="ruleCards">
+<div class="card ruleCard"><h3><span class="orange">01.</span> 고정 모델</h3><p>사전에 대각선 분류를 학습한 작은 로지스틱 모델. 학습 이후에는 가중치를 절대 바꾸지 않고 그대로 예측한다.</p></div>
+<div class="card ruleCard"><h3><span class="mint">02.</span> 기억 모델</h3><p>관측한 (좌표, 정답)을 기록하고 가장 가까운 최대 5개 사례의 거리 가중 투표로 분류한다. 0개일 때만 고정 모델에 의존한다.</p></div>
+<div class="card ruleCard"><h3><span class="violet">03.</span> 규칙 발견 모델</h3><p>직선 경계, 중심 원, 상수 규칙 중 관측 사례와 가장 일치하는 가설을 선택한다. 새 좌표에도 선택한 법칙을 적용한다.</p></div>
+</section>
+<footer class="footer"><b>실험의 한계:</b> 세 모델 모두 관측 시 정답(라벨)을 제공받으며, 진정한 의미의 무감독 법칙 발견은 아니다. ③은 사람이 제공한 가설 목록 안에서만 탐색한다. ②는 표본 자체가 기억이며 ③은 선택된 규칙이 기억이므로, 가중치가 고정되어도 내부/외부 상태는 바뀐다. 시험점은 훈련 표본과 독립적으로 생성한다. 결과는 표본 위치에 따라 달라진다. 이 교육용 실험은 AGI나 새로운 학습 원리를 입증하지 않는다.</footer>
+</main>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id);
+const world=$('world'),wctx=world.getContext('2d'),chart=$('chart'),cctx=chart.getContext('2d');
+let seed=20261027;
+function rand(){seed=(Math.imul(1664525,seed)+1013904223)>>>0;return seed/4294967296;}
+const sigmoid=v=>1/(1+Math.exp(-Math.max(-40,Math.min(40,v))));
+// Train the reference model ONCE on the original diagonal task, then freeze its weights.
+let w=[(rand()-.5)*.2,(rand()-.5)*.2,(rand()-.5)*.2];
+for(let i=0;i<15000;i++){let x=rand()*2-1,y=rand()*2-1,t=x+y>0?1:0,p=sigmoid(w[0]*x+w[1]*y+w[2]),g=.15*(p-t);w[0]-=g*x;w[1]-=g*y;w[2]-=g;}
+Object.freeze(w);const signature=JSON.stringify(w);
+const frozen=(x,y)=>sigmoid(w[0]*x+w[1]*y+w[2])>=.5?1:0;
+const worlds={
+ reverse:{name:'반대 대각선',test:(x,y)=>+(x+y<0)},
+ vertical:{name:'오른쪽 경계',test:(x,y)=>+(x>0.25)},
+ circle:{name:'중앙의 원',test:(x,y)=>+(x*x+y*y<.42)},
+ xor:{name:'XOR: 네 구역',test:(x,y)=>+((x>0)!==(y>0))},
+ wave:{name:'물결 모양',test:(x,y)=>+(y>0.33*Math.sin(7*x))},
+ original:{name:'원래 학습한 규칙',test:(x,y)=>+(x+y>0)}
+};
+let environment='reverse',sampling='uniform',mode='train',view='truth',samples=[],probe=null,history=[];
+const testPoints=[];let testSeed=991802;
+function testRand(){testSeed=(Math.imul(22695477,testSeed)+1)>>>0;return testSeed/4294967296;}
+for(let i=0;i<800;i++)testPoints.push({x:2*testRand()-1,y:2*testRand()-1});
+// A deliberately limited hypothesis class; its success and failure are both informative.
+const hypotheses=[
+ {name:'항상 주황',kind:'const',complexity:0,fn:()=>0},
+ {name:'항상 민트',kind:'const',complexity:0,fn:()=>1}
+];
+const directions=[['x',1,0],['y',0,1],['x + y',1,1],['x − y',1,-1],['y − x',-1,1]];
+for(const [name,a,b] of directions){
+ const extent=Math.abs(a)+Math.abs(b),count=48;
+ for(let i=1;i<count;i++){
+  const t=extent*(-1+2*i/count); 
+  for(const sign of [1,-1]){
+   hypotheses.push({name:`${name} ${sign===1?'>':'<'} ${t.toFixed(2)}`,kind:'linear',complexity:0.22+0.045*Math.abs(t),fn:(x,y)=>+(sign*(a*x+b*y-t)>0)});
+  }
+ }
+}
+for(let i=7;i<=22;i++){
+ const r=i*.05;
+ for(const sign of [1,-1])hypotheses.push({name:`x² + y² ${sign===1?'<':'>'} ${Number((r*r).toFixed(3))}`,kind:'circle',complexity:0.42,fn:(x,y)=>+(sign*(r*r-x*x-y*y)>0)});
+}
+function fitRule(){if(samples.length<3)return {name:'관측 3개 전: 원래 모델 사용',fn:frozen,errors:null};
+ let best=null,bestScore=Infinity;
+ for(const h of hypotheses){let errors=0;for(const s of samples){if(h.fn(s.x,s.y)!==s.label)errors++;if(errors>bestScore)break;}
+ const score=errors+h.complexity;
+ if(score<bestScore-1e-9){bestScore=score;best={name:h.name,fn:h.fn,errors};}}
+ return best;
+}
+let rule=fitRule();
+function memoryPredict(x,y){if(!samples.length)return frozen(x,y);let near=[];
+ for(const s of samples){let d2=(x-s.x)**2+(y-s.y)**2,idx=near.length;while(idx>0&&near[idx-1].d2>d2)idx--;if(idx<5){near.splice(idx,0,{d2,label:s.label,x:s.x,y:s.y});if(near.length>5)near.pop();}}
+ let a=0,b=0;for(const s of near){let weight=1/(s.d2+.004);a+=weight*s.label;b+=weight;}return +(a/b>=.5);
+}
+function predict(type,x,y){switch(type){case'frozen':return frozen(x,y);case'memory':return memoryPredict(x,y);case'rule':return rule.fn(x,y);default:return worlds[environment].test(x,y);}}
+function metrics(){let correct={frozen:0,memory:0,rule:0};for(const p of testPoints){const actual=worlds[environment].test(p.x,p.y);for(const key of Object.keys(correct))correct[key]+=+(predict(key,p.x,p.y)===actual);}for(const key of Object.keys(correct))correct[key]=100*correct[key]/testPoints.length;return correct;}
+function addSamples(n){for(let i=0;i<n;i++){let x=(sampling==='left'?rand()-1:2*rand()-1),y=2*rand()-1;samples.push({x,y,label:worlds[environment].test(x,y)});}probe=null;update(true);}
+function reset(){samples=[];history=[];probe=null;update(true);}
+function dims(c,width,height){const d=Math.min(window.devicePixelRatio||1,2);c.width=Math.floor(width*d);c.height=Math.floor(height*d);c.getContext('2d').setTransform(d,0,0,d,0,0);}
+function point(x,y,side){return {x:(x+1)*side/2,y:(1-y)*side/2};}
+function drawWorld(){let side=world.getBoundingClientRect().width||450;dims(world,side,side);
+ const cells=54,cell=side/cells;
+ for(let i=0;i<cells;i++)for(let j=0;j<cells;j++){
+ const x=2*(i+.5)/cells-1,y=1-2*(j+.5)/cells,v=predict(view,x,y);
+ wctx.fillStyle=v?'#1e5c5f':'#76503c';wctx.fillRect(i*cell,j*cell,cell+.6,cell+.6);
+ }
+ wctx.lineWidth=1;wctx.strokeStyle='#ffffff1c';for(let k=1;k<8;k++){let a=k*side/8;wctx.beginPath();wctx.moveTo(a,0);wctx.lineTo(a,side);wctx.moveTo(0,a);wctx.lineTo(side,a);wctx.stroke();}
+ wctx.strokeStyle='#ffffff55';wctx.beginPath();wctx.moveTo(side/2,0);wctx.lineTo(side/2,side);wctx.moveTo(0,side/2);wctx.lineTo(side,side/2);wctx.stroke();
+ let stride=Math.max(1,Math.ceil(samples.length/1800));for(let i=0;i<samples.length;i+=stride){const s=samples[i],p=point(s.x,s.y,side);wctx.beginPath();wctx.arc(p.x,p.y,Math.max(2.6,side/135),0,Math.PI*2);wctx.fillStyle=s.label?'#79eee2':'#ffc28c';wctx.fill();wctx.lineWidth=1;wctx.strokeStyle='#0a1924';wctx.stroke();}
+ if(probe){const p=point(probe.x,probe.y,side);wctx.beginPath();wctx.arc(p.x,p.y,8,0,Math.PI*2);wctx.fillStyle='#bc92ff';wctx.fill();wctx.lineWidth=2;wctx.strokeStyle='#fff';wctx.stroke();wctx.beginPath();wctx.arc(p.x,p.y,13,0,Math.PI*2);wctx.lineWidth=1.5;wctx.strokeStyle='#cdb2ff';wctx.stroke();}
+}
+function drawChart(){let box=chart.getBoundingClientRect(),W=box.width||400,H=box.height||180;dims(chart,W,H);cctx.clearRect(0,0,W,H);
+ const left=37,right=10,top=10,bottom=27,PW=W-left-right,PH=H-top-bottom;
+ cctx.font='11px system-ui';for(let v=0;v<=100;v+=25){let y=top+PH*(1-v/100);cctx.strokeStyle='#ffffff19';cctx.beginPath();cctx.moveTo(left,y);cctx.lineTo(W-right,y);cctx.stroke();cctx.fillStyle='#a2b6c8';cctx.textAlign='right';cctx.fillText(v+'%',left-6,y+3);}
+ let maxX=Math.max(10,samples.length);cctx.fillStyle='#98b0c1';cctx.textAlign='left';cctx.fillText('0',left,H-7);cctx.textAlign='right';cctx.fillText(maxX+'개',W-right,H-7);
+ for(const [key,color] of [['frozen','#f6ab70'],['memory','#69d6cc'],['rule','#c39eff']]){
+ if(!history.length)continue;cctx.strokeStyle=color;cctx.lineWidth=2.4;cctx.lineJoin='round';cctx.beginPath();for(let i=0;i<history.length;i++){let h=history[i],x=left+h.n/maxX*PW,y=top+(1-h[key]/100)*PH;i===0?cctx.moveTo(x,y):cctx.lineTo(x,y);}cctx.stroke();const p=history[history.length-1];cctx.fillStyle=color;cctx.beginPath();cctx.arc(left+p.n/maxX*PW,top+(1-p[key]/100)*PH,3,0,Math.PI*2);cctx.fill();}
+}
+function info(){if(!probe){$('probe').innerHTML='<b>시험해보기</b><br><span class="tiny">‘클릭해서 시험’을 누르고 지도를 클릭하면 세 모델의 예측을 비교할 수 있어.</span>';return;}
+ const a=worlds[environment].test(probe.x,probe.y),names={frozen:'고정',memory:'기억',rule:'규칙'},cls={frozen:'orange',memory:'mint',rule:'violet'};
+ let html=`<b>좌표 (${probe.x.toFixed(2)}, ${probe.y.toFixed(2)})</b> · 실제: <b>${a?'민트':'주황'}</b><div class="divider"></div>`;
+ for(const k of ['frozen','memory','rule']){let p=predict(k,probe.x,probe.y);html+=`<div><span class="${cls[k]}">${names[k]} 모델</span>: ${p?'민트':'주황'} ${p===a?'✓ 정답':'✕ 오답'}</div>`;}
+ $('probe').innerHTML=html;
+}
+function update(record){if(JSON.stringify(w)!==signature)throw Error('고정 가중치가 변했습니다');rule=fitRule();const m=metrics();$('frozenAccuracy').textContent=m.frozen.toFixed(1)+'%';$('memoryAccuracy').textContent=m.memory.toFixed(1)+'%';$('ruleAccuracy').textContent=m.rule.toFixed(1)+'%';$('observations').textContent=samples.length.toLocaleString('ko-KR');$('hypothesis').textContent=rule.name;
+ $('trainingError').textContent=rule.errors===null?'규칙 추정은 관측 3개부터 시작':`관측 데이터 내 오류: ${rule.errors}/${samples.length}개 (${(100*rule.errors/samples.length).toFixed(1)}%)`;
+ $('currentEnvironment').textContent=worlds[environment].name;$('chartCount').textContent=`관측 ${samples.length}개`;
+ if(record){const last=history[history.length-1];if(last&&last.n===samples.length){Object.assign(last,m);}else history.push({n:samples.length,...m});}
+ $('overlayBadge').textContent={truth:'실제 정답',frozen:'고정 모델 예측',memory:'기억 모델 예측',rule:'규칙 모델 예측'}[view]+(mode==='train'?' · 클릭 = 관측':' · 클릭 = 시험');
+ drawWorld();drawChart();info();
+}
+world.addEventListener('pointerdown',e=>{const r=world.getBoundingClientRect();const x=Math.max(-.999,Math.min(.999,2*(e.clientX-r.left)/r.width-1));const y=Math.max(-.999,Math.min(.999,1-2*(e.clientY-r.top)/r.height));probe={x,y};if(mode==='train')samples.push({x,y,label:worlds[environment].test(x,y)});update(mode==='train');});
+for(const [id,n] of [['add1',1],['add10',10],['add50',50],['add200',200]])$(id).addEventListener('click',()=>addSamples(n));
+$('reset').addEventListener('click',reset);
+$('environment').addEventListener('change',e=>{environment=e.target.value;reset();});
+$('sampling').addEventListener('change',e=>{sampling=e.target.value;});
+$('modeTrain').addEventListener('click',()=>{mode='train';$('modeTrain').classList.add('active');$('modeTest').classList.remove('active');update(false);});
+$('modeTest').addEventListener('click',()=>{mode='test';$('modeTrain').classList.remove('active');$('modeTest').classList.add('active');update(false);});
+for(const btn of document.querySelectorAll('[data-view]'))btn.addEventListener('click',()=>{view=btn.dataset.view;for(const b of document.querySelectorAll('[data-view]'))b.classList.toggle('active',b===btn);update(false);});
+let resizeTimeout;window.addEventListener('resize',()=>{clearTimeout(resizeTimeout);resizeTimeout=setTimeout(()=>{drawWorld();drawChart();},150);});
+update(true);
+window.__genesisLabTest={worlds,metrics,addSamples,reset,selectWorld:(id)=>{environment=id;reset();},samples:()=>samples.length,rule:()=>rule.name,weights:()=>w.slice()};
+})();
+</script>
+</body></html>

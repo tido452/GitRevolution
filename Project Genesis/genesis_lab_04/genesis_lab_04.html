@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#0b1522"/>
+<title>GENESIS 04 | 직관의 기계적 실험</title>
+<style>
+:root{color-scheme:dark;--bg:#0a1420;--panel:#101f2e;--panel2:#14283a;--edge:#304558;--ink:#eef3f5;--dim:#9ab1c0;--teal:#67e2be;--amber:#f4b47d;--violet:#a8a5ff;--blue:#7ebfe5}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:radial-gradient(ellipse 760px 380px at 100% -3%,#374e6542,transparent),radial-gradient(ellipse 850px 440px at -6% 0%,#174c4940,transparent),var(--bg);font:14px/1.53 -apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+button,select,input{color:inherit;font:inherit}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.wrap{max-width:1340px;margin:auto;padding:27px 24px 48px}.kicker{font-size:11px;letter-spacing:.19em;color:var(--teal);font-weight:800}.hero{display:grid;grid-template-columns:1fr auto;align-items:start;gap:20px;padding:5px 0 21px}.hero h1{font-size:clamp(30px,4.4vw,52px);letter-spacing:-.055em;line-height:1.13;margin:12px 0 10px;font-weight:800}.hero h1 em{color:var(--teal);font-style:normal}.hero p{max-width:760px;color:#b9ccd8;font-size:14px;line-height:1.8;margin:0}.labtag{font-size:11px;color:#b1f2dd;border:1px solid #4d8579;background:#153a39;border-radius:40px;padding:8px 13px;white-space:nowrap}
+.panel{border:1px solid var(--edge);background:linear-gradient(135deg,#142637 0%,#0d1b2a 100%);border-radius:17px;box-shadow:0 13px 38px #00000016}.note{background:#15313b;border-color:#376878;padding:12px 16px;margin-bottom:14px;color:#c1e6e7;font-size:12px}.note strong{color:#abf5dd}
+.controls{padding:17px;margin-bottom:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:15px;align-items:end}.controlset{display:flex;flex-wrap:wrap;align-items:end;gap:10px}.field{display:flex;flex-direction:column;gap:4px}.field label{font-size:11px;font-weight:690;color:var(--dim)}select,input{background:#1d3449;border:1px solid #426079;border-radius:8px;min-height:37px;padding:7px 10px}select{min-width:140px}input{width:81px}.actions{display:flex;gap:7px;flex-wrap:wrap}.btn{padding:9px 12px;border-radius:9px;border:1px solid #496477;background:#253f53;color:#e9f3f6;font-size:12px;font-weight:730;transition:background .15s}.btn:hover:not(:disabled){background:#36566b}.btn.primary{background:var(--teal);color:#0d2530;border-color:var(--teal)}.btn.primary:hover:not(:disabled){background:#9cf1d6}.btn.soft{background:#153039;color:#b3efe0;border-color:#3f756e}.btn.ghost{background:transparent}
+.layout{display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,.98fr);gap:14px}.stage,.results,.discoveries,.logarea{padding:17px}.right{display:flex;flex-direction:column;gap:14px}.head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:13px}h2{font-size:16px;letter-spacing:-.023em;margin:0}h3{font-size:12px;margin:0}.fine{font-size:11px;color:var(--dim)}.space{max-width:520px;margin:auto;position:relative}.space canvas{width:100%;height:auto;display:block;border:1px solid #426279;border-radius:11px;cursor:crosshair;touch-action:manipulation;background:#142b3e}.overlay{position:absolute;top:11px;left:11px;background:#0d1e2be6;color:#d4e4ed;padding:6px 9px;font-size:10px;border:1px solid #39586c;border-radius:7px;pointer-events:none}.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:11px;color:#aec4d0;font-size:11px}.swatch{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:11px}.tabs button{border:1px solid #39576c;background:#1b3244;color:#b6cbd7;border-radius:7px;padding:7px 10px;font-size:11px;cursor:pointer}.tabs button.selected{border-color:#55a69a;background:#214b4b;color:#e8fff8}.probe{margin-top:13px;background:#102b36;border:1px solid #356272;border-radius:9px;padding:11px 12px;min-height:61px;color:#d3e8e9;font-size:12px}.maphint{font-size:11px;color:#92afbe;margin:10px 0 0}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.metric{background:#0d2131;border:1px solid #344b5e;border-radius:11px;padding:11px;min-width:0}.metric h3{color:#c5d8e1;font-size:11px;min-height:32px}.stat{font-size:clamp(20px,2.5vw,30px);font-weight:800;line-height:1.15;letter-spacing:-.05em;margin:6px 0 9px;font-variant-numeric:tabular-nums}.metric:nth-child(1) .stat{color:var(--amber)}.metric:nth-child(2) .stat{color:var(--blue)}.metric:nth-child(3) .stat{color:var(--teal)}.minimap{width:100%;max-width:152px;aspect-ratio:1;display:block;border:1px solid #3c5265;border-radius:6px;background:#162839}.metric small{font-size:10px;color:#8da8b8;display:block;margin-top:7px;line-height:1.4}
+.stats{display:flex;justify-content:space-between;flex-wrap:wrap;gap:7px;padding:9px 12px;border-radius:9px;background:#142d3c;border:1px solid #325268;margin-top:12px;color:#afc4d0;font-size:12px}.stats b{color:#f3fcff}.expression{padding:14px;border-radius:11px;background:#152837;border:1px solid #406077;margin-top:12px}.eyebrow{color:var(--teal);font-size:11px;font-weight:800;letter-spacing:.1em}.eq{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:16px;font-weight:700;color:#ecfff6;word-break:break-all;line-height:1.55;margin:8px 0 5px;max-height:122px;overflow:auto}.rulemeta{font-size:11px;color:#b3cad7;line-height:1.5}.bar{height:7px;border-radius:30px;background:#304759;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#4bbaa8,#a6f2ca);transition:width .15s}.status{margin-top:7px;color:#c1e8db;font-size:11px;min-height:18px}
+.curve{display:block;width:100%;height:170px}.keys{display:flex;gap:13px;flex-wrap:wrap;font-size:11px;color:var(--dim)}.report{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}.report .panel{padding:17px}.report p{color:#a9c1d0;font-size:12px;line-height:1.75;margin:8px 0 0}.report ul{margin:8px 0 0;padding-left:18px;font-size:12px;color:#b0c6d2;line-height:1.9}.concept{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid #3f6371;padding:9px 10px;border-radius:8px;margin-top:9px;background:#162f3f}.concept .code{font:12px/1.5 ui-monospace,monospace;color:#ddf8f1;word-break:break-word}.concept span{font-size:10px;color:#a3c4bc;white-space:nowrap}.foot{margin-top:17px;font-size:11px;color:#94aaba;line-height:1.75}.botline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.troubleshoot{font-size:11px;color:#afc0ce}.badge{font-size:10px;padding:4px 7px;border-radius:5px;border:1px solid #517367;color:#b5ebdc}
+@media(max-width:950px){.layout{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.labtag{justify-self:start}.report{grid-template-columns:1fr}.space{max-width:510px}}@media(max-width:540px){.wrap{padding:18px 11px 34px}.controls,.stage,.results,.discoveries,.logarea,.report .panel{padding:12px}.controls{gap:12px}.controlset{width:100%}.field{flex:1;min-width:130px}.field select{min-width:0;width:100%}.field input{width:100%}.metrics{gap:5px}.metric{padding:7px}.metric h3{font-size:10px;min-height:40px}.stat{font-size:18px}.metric small{font-size:9px}.hero h1{font-size:32px}}
+</style>
+</head><body><main class="wrap">
+<header class="hero"><div><div class="kicker">PROJECT GENESIS / EXPERIMENT 04</div><h1>직관은 <em>만들어질 수 있을까?</em></h1><p>규칙 후보 목록을 외우는 대신 <b>새로운 수학적 표현식을 진화적으로 구성</b>하는 AI. 동일한 라벨 관측 예산을 받는 선형 모델·기억 모델과 비교하면서, 이전 버전이 약했던 주기적 줄무늬까지 실험하자.</p></div><div class="labtag">● OFFLINE · SYMBOLIC EVOLUTION</div></header>
+<div class="panel note"><strong>추천 실험</strong> · <b>주기적 줄무늬</b> → <b>진화 시작</b> → 발견된 <code>sin(…)</code> 형태와 정확도 변화를 관찰해봐. 다음에는 <b>기울어진 물결</b>로 바꿔 실패 가능성을 확인해봐. 정답 공식은 모델에 직접 주어지지 않아.</div>
+<section class="panel controls"><div class="controlset"><div class="field"><label for="task">세계의 숨겨진 규칙</label><select id="task"><option value="stripes">주기적 줄무늬</option><option value="xor">XOR 네 구역</option><option value="circle">원형 영역</option><option value="parabola">포물선 경계</option><option value="ripple">기울어진 물결 · 어려움</option><option value="diagonal">직선 · 대조군</option></select></div><div class="field"><label for="count">관측 수</label><select id="count"><option value="60">60개</option><option value="120" selected>120개</option><option value="240">240개</option></select></div><div class="field"><label for="region">관측 범위</label><select id="region"><option value="all">전체 공간</option><option value="left">왼쪽 절반만</option></select></div><div class="field"><label for="noise">관측 오류</label><select id="noise"><option value="0">0%</option><option value="0.05">5%</option><option value="0.15">15%</option></select></div><div class="field"><label for="seed">난수 시드</label><input type="number" id="seed" value="20261028"/></div></div>
+<div class="actions"><button class="btn ghost" id="new">↻ 새 실험</button><button class="btn primary" id="run">▶ 진화 시작</button><button class="btn" id="step">+1 세대</button><button class="btn soft" id="pause" disabled>■ 멈춤</button></div></section>
+<section class="layout"><div class="panel stage"><div class="head"><h2>관측 지도</h2><span class="fine" id="maphead">GENESIS 04의 예측</span></div><div class="space"><canvas id="map" width="480" height="480" aria-label="세계의 학습점과 분류지도를 표시하는 인터랙티브 캔버스"></canvas><div class="overlay" id="maptag">새로 생성한 표현식의 판단 영역</div></div><div class="legend"><span><i class="swatch" style="background:#f3b27e"></i>클래스 0</span><span><i class="swatch" style="background:#62d5b6"></i>클래스 1</span><span>○ 관측된 사례</span></div><div class="tabs" id="viewTabs"><button data-v="truth">숨겨진 정답</button><button data-v="linear">선형</button><button data-v="memory">기억</button><button class="selected" data-v="genesis">GENESIS 04</button></div><div class="tabs" id="clickTabs"><button class="selected" data-v="test">◎ 클릭해 예측 검증</button><button data-v="observe">＋ 클릭해 관측 추가</button></div><p class="maphint">지도에서 시험한 점은 학습에 사용되지 않아. 관측 추가 모드에서는 새 라벨이 제공되고 진화 과정을 다시 시작해.</p><div class="probe" id="probe">지도를 클릭하면 해당 지점의 정답과 세 모델의 예측을 확인할 수 있어.</div></div>
+<div class="right"><div class="panel results"><div class="head"><h2>독립 시험 데이터 정확도</h2><span class="fine">모델 선택과 분리된 1,000점</span></div><div class="metrics"><div class="metric"><h3>① 선형 모델</h3><div class="stat" id="linAcc">—</div><canvas class="minimap" id="minLinear" width="132" height="132"></canvas><small>x, y에 로지스틱 회귀</small></div><div class="metric"><h3>② 기억 모델</h3><div class="stat" id="memAcc">—</div><canvas class="minimap" id="minMemory" width="132" height="132"></canvas><small>가까운 경험 5개 검색</small></div><div class="metric"><h3>③ GENESIS 04</h3><div class="stat" id="genAcc">—</div><canvas class="minimap" id="minGenesis" width="132" height="132"></canvas><small>수식 구조를 진화적 탐색</small></div></div>
+<div class="stats"><div>관측 <b id="nSamples">120</b> · 검증 <b id="nValidation">30</b> · 세대 <b id="generation">0</b><span class="fine"> / 80</span></div><div>표현식 노드 <b id="complexity">—</b></div></div><div class="expression"><div class="eyebrow">DISCOVERED REPRESENTATION · 발견된 표현</div><div class="eq" id="formula">아직 탐색 전</div><div class="rulemeta" id="fitMeta">진화 시작을 누르면 연산자들을 조합해서 새로운 결정 규칙을 탐색해.</div></div><div class="bar"><i id="progress"></i></div><div class="status" id="status" aria-live="polite">실험 준비 완료. 아직 학습된 수식 없음.</div><div class="botline"><div class="actions"><button class="btn" id="save" disabled>＋ 발견한 개념 저장</button><button class="btn ghost" id="csv">↓ 결과 CSV</button></div><label class="troubleshoot"><input type="checkbox" id="reuse" style="width:15px;height:15px;min-height:0;vertical-align:middle" checked/> 저장한 개념 재사용</label></div></div>
+<div class="panel logarea"><div class="head"><h2>진화 과정</h2><span class="fine">세대별 훈련 최고 / 검증 선택 모델</span></div><canvas class="curve" id="chart"></canvas><div class="keys"><span><i class="swatch" style="background:var(--amber)"></i>훈련 정확도</span><span><i class="swatch" style="background:var(--teal)"></i>검증 정확도</span></div></div></div></section>
+<section class="report"><div class="panel discoveries"><div class="head"><h2>개념 보관소</h2><span class="badge" id="libraryCount">0개 저장</span></div><p>발견한 식을 저장하면 다음 실험의 초기 후보로 재사용할 수 있어. 저장한 식이 다른 세계에서 자동으로 정답이 되지는 않아.</p><div id="library"><div class="fine" style="padding-top:11px">저장된 개념이 없어. 먼저 진화를 실행해봐.</div></div></div><div class="panel"><h2>무엇을 검증하는 실험인가?</h2><ul><li><b>연산 조합:</b> +, −, ×, sin, cos, 제곱, 절댓값 등 주어진 기본 연산으로 새로운 식을 생성</li><li><b>진화:</b> 표현식 일부를 교차·변이하고 훈련 점수와 식 복잡도로 후보를 선택</li><li><b>검증:</b> 별도 검증 세트로 최종 식을 선택하고 시험 세트에서 일반화 평가</li><li><b>한계:</b> 새로운 원시 연산 자체를 발명하지는 못하며, 정답 라벨이 필요함</li></ul></div></section>
+<footer class="foot"><strong>연구 윤리 메모.</strong> 이 도구는 기호 회귀/유전적 프로그래밍을 이용한 탐색적 연구 프로토타입이야. 진화적 탐색은 사전에 지정한 연산자 집합과 검색 예산에 제한되며, '천재적 직관'이나 AGI를 입증하지 않아. 모든 모델이 같은 120개(기본값)의 라벨 관측을 사용해. GENESIS는 이를 훈련/검증으로 나누고, 선형·기억 모델은 120개 전체를 학습해. 탐색 연산량과 표현력은 다르므로 정확도만으로 알고리즘의 효율을 비교할 수 없어. 표시되는 독립 시험 정확도를 보며 실험 조건을 반복 선택하면 연구자에 의한 테스트 세트 과적합이 생길 수 있어. 각 조건의 일반화 성능은 별도 미사용 시드로 재검증해야 해.</footer>
+</main>
+<script>
+/* GENESIS 04: Genetic programming for symbolic feature construction.
+ * All learners receive identical labeled observations. Pure JS, Node and browser.
+ * Structural evolution uses only training labels; validation selects the final expression;
+ * test is separate and is never used by the optimizer.
+ */
+(function(root, factory){const value=factory();if(typeof module!=='undefined'&&module.exports) module.exports=value; root.GENESIS4=value;})(typeof globalThis!=='undefined'?globalThis:this,function(){'use strict';
+  function rng(seed){let s=(Number(seed)>>>0);return ()=>{s+=0x6D2B79F5;let t=s;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;};}
+  function randint(r,n){return Math.floor(r()*n)}
+  function choose(r,a){return a[randint(r,a.length)]}
+  const tasks={
+    xor:{title:'XOR · 네 구역',detail:'곱의 부호에 따라 영역이 갈림',fn:(x,y)=>+(x*y>0)},
+    circle:{title:'원형 영역',detail:'거리의 제곱으로 구분되는 영역',fn:(x,y)=>+(x*x+y*y<.44)},
+    parabola:{title:'포물선',detail:'곡선 위아래를 구분',fn:(x,y)=>+(y>.08+.82*x*x)},
+    stripes:{title:'주기적 줄무늬',detail:'GENESIS 03과 동일한 물결 조건',fn:(x,y)=>+(Math.sin(3.5*Math.PI*x)>0)},
+    ripple:{title:'기울어진 물결',detail:'두 좌표의 조합에 따른 주기성',fn:(x,y)=>+(Math.sin(4*x+2*y)>0)},
+    diagonal:{title:'대각선 · 대조군',detail:'처음 좌표로 충분히 선형 분리 가능',fn:(x,y)=>+(x+y>.2)}
+  };
+  const uops=['sin','cos','sq','abs','neg'];const bops=['add','sub','mul'];const nums=[-4,-3,-2,-1,-.5,0,.5,1,2,3,4,6];
+  const X={op:'x'},Y={op:'y'};
+  function leaf(r){const q=r();return q<.39?{op:'x'}:q<.78?{op:'y'}:{op:'c',v:choose(r,nums)};}
+  function make(r,depth=3){if(depth<=0||r()<.31)return leaf(r);if(r()<.42)return {op:choose(r,uops),a:make(r,depth-1)};return {op:choose(r,bops),a:make(r,depth-1),b:make(r,depth-1)};}
+  function size(n){return 1+(n.a?size(n.a):0)+(n.b?size(n.b):0)}
+  function evalTree(n,x,y){switch(n.op){
+    case 'x':return x; case 'y':return y;case 'c':return n.v;
+    case 'sin':return Math.sin(evalTree(n.a,x,y));case 'cos':return Math.cos(evalTree(n.a,x,y));
+    case 'sq':{const a=evalTree(n.a,x,y);return Math.min(1e6,a*a)}
+    case 'abs':return Math.abs(evalTree(n.a,x,y));case 'neg':return -evalTree(n.a,x,y);
+    case 'add':return Math.max(-1e6,Math.min(1e6,evalTree(n.a,x,y)+evalTree(n.b,x,y)));
+    case 'sub':return Math.max(-1e6,Math.min(1e6,evalTree(n.a,x,y)-evalTree(n.b,x,y)));
+    case 'mul':return Math.max(-1e6,Math.min(1e6,evalTree(n.a,x,y)*evalTree(n.b,x,y)));
+  }return 0;}
+  function expr(n){switch(n.op){case 'x':case 'y':return n.op;case 'c':return String(Number(n.v.toFixed(2)));case 'sin':case 'cos':case 'abs':return n.op+'('+expr(n.a)+')';case 'sq':return '('+expr(n.a)+')²';case 'neg':return '−'+expr(n.a);default:return '('+expr(n.a)+' '+({add:'+',sub:'−',mul:'×'}[n.op])+' '+expr(n.b)+')';}}
+  function clone(n){return n.a? (n.b?{op:n.op,a:clone(n.a),b:clone(n.b)}:{op:n.op,a:clone(n.a)}):n.op==='c'?{op:'c',v:n.v}:{op:n.op};}
+  function paths(n,path=[],all=[]){all.push(path);if(n.a)paths(n.a,path.concat('a'),all);if(n.b)paths(n.b,path.concat('b'),all);return all;}
+  function get(n,p){for(const k of p)n=n[k];return n;}
+  function put(n,p,sub){if(!p.length)return clone(sub);const out=clone(n);let cur=out;for(let i=0;i<p.length-1;i++)cur=cur[p[i]];cur[p[p.length-1]]=clone(sub);return out;}
+  function safe(n,limit=19){return size(n)>limit?null:n;}
+  function mutate(n,r,maxSize=19){const ps=paths(n),p=choose(r,ps),part=get(n,p);let v=null;const z=r();
+    if(z<.18){v=make(r,randint(r,3)+1)}
+    else if(z<.32){v={op:choose(r,uops),a:clone(part)}}
+    else if(z<.57){v={op:choose(r,bops),a:clone(part),b: r()<.52?{op:'c',v:choose(r,nums)}:leaf(r)}}
+    else if(z<.75){v=clone(part);if(v.op==='c'){v.v= Math.round((v.v+(r()-.5)*2.5)*4)/4;v.v=Math.max(-8,Math.min(8,v.v));}else if(v.a&&!v.b){v.op=choose(r,uops);}else if(v.b){v.op=choose(r,bops);}else v=make(r,2)}
+    else if(z<.90){v={op:'sin',a:{op:'mul',a:clone(part),b:{op:'c',v:choose(r,[.5,1,2,3,4,6])}}};}
+    else{v={op:'add',a:clone(part),b:leaf(r)}}
+    const newN=put(n,p,v);return safe(newN,maxSize)||clone(n);
+  }
+  function crossover(a,b,r,maxSize=19){const pa=choose(r,paths(a)),pb=choose(r,paths(b));return safe(put(a,pa,get(b,pb)),maxSize)||clone(a);}
+  function makeSamples(task,count,r,region='all',noise=0){const arr=[];for(let i=0;i<count;i++){
+    const x=region==='left'?-1+r():-1+2*r(),y=-1+2*r();const truth=tasks[task].fn(x,y);const label=r()<noise?1-truth:truth;
+    arr.push({x,y,label,truth});}return arr;}
+  function partition(n,seed,noise=0,region='all'){
+    const r=rng(seed);const all=makeSamples(n.task||'xor',n.samples||120,r,region,noise);
+    // All models see the same budget of labeled observations. GENESIS splits them 75/25
+    // into evolution-fitness and model-selection validation. Baselines fit all observations.
+    const split=Math.max(1,Math.min(all.length-1,Math.round(all.length*.75)));
+    const train=all.slice(0,split),validation=all.slice(split);
+    const test=makeSamples(n.task||'xor',1000,r,'all',0);
+    return {train,validation,test};}
+  function fitThreshold(tree,data){
+    const sorted=data.map(d=>({v:evalTree(tree,d.x,d.y),label:d.label}));sorted.sort((a,b)=>a.v-b.v);
+    const n=sorted.length;if(!n)return {threshold:0,right:true,acc:0};
+    const positive=sorted.reduce((s,d)=>s+d.label,0);let leftPositive=0, leftNegative=0;
+    let best={mistakes:n+1,threshold:0,right:true,acc:0};
+    function check(t){const rightPositive=positive-leftPositive,rightNegative=(n-positive)-leftNegative;const errRight=leftPositive+rightNegative,errLeft=leftNegative+rightPositive;
+      if(errRight<best.mistakes)best={mistakes:errRight,threshold:t,right:true};
+      if(errLeft<best.mistakes)best={mistakes:errLeft,threshold:t,right:false};}
+    check(sorted[0].v-1e-5);
+    for(let i=0;i<n;i++){
+      if(sorted[i].label)leftPositive++;else leftNegative++;
+      if(i===n-1||sorted[i+1].v-sorted[i].v>1e-8)check(i===n-1?sorted[i].v+1e-5:(sorted[i].v+sorted[i+1].v)/2);
+    }
+    best.acc=1-best.mistakes/n;return best;
+  }
+  function predict(symbol,x,y){const v=evalTree(symbol.tree,x,y);return +(symbol.fit.right?v>symbol.fit.threshold:v<symbol.fit.threshold);}
+  function accuracy(symbol,data){if(!data.length)return 0;let hit=0;for(const d of data)hit+=predict(symbol,d.x,d.y)===d.truth?1:0;return hit/data.length;}
+  function trainingAccuracy(symbol,data){let hit=0;for(const d of data)hit+=predict(symbol,d.x,d.y)===d.label?1:0;return data.length?hit/data.length:0;}
+  function fitLinear(data){let w=[0,0,0];for(let i=0;i<360;i++){
+    let g=[0,0,0];for(const d of data){const z=w[0]+w[1]*d.x+w[2]*d.y;const p=1/(1+Math.exp(-Math.max(-30,Math.min(30,z))));const e=p-d.label;g[0]+=e;g[1]+=e*d.x;g[2]+=e*d.y;}
+    const rate=.9/Math.max(1,data.length);for(let j=0;j<3;j++)w[j]-=rate*(g[j]+(j?0.005*w[j]*data.length:0));}
+    return {w,predict:(x,y)=>+(w[0]+w[1]*x+w[2]*y>0)};}
+  function knn(data,k=5){return {predict:(x,y)=>{const a=[];for(const d of data){let dist=(d.x-x)**2+(d.y-y)**2;if(a.length===k&&dist>=a[a.length-1].dist)continue;let j=0;while(j<a.length&&a[j].dist<dist)j++;a.splice(j,0,{dist,label:d.label});if(a.length>k)a.pop();}let y1=0,ym=0;for(const d of a){const wt=1/(d.dist+.005);y1+=wt*d.label;ym+=wt;}return +(y1>=ym/2);}};}
+  function modelAcc(model,data){let hits=0;for(const d of data)hits+=model.predict(d.x,d.y)===d.truth;return data.length?hits/data.length:0;}
+  function seedPopulation(r,population,macro=[]){const arr=[clone(X),clone(Y),{op:'add',a:clone(X),b:clone(Y)},{op:'sub',a:clone(X),b:clone(Y)}];
+    for(const m of macro){if(m&&size(m)<=19)arr.push(clone(m));}
+    while(arr.length<population)arr.push(make(r,randint(r,4)+1));return arr.slice(0,population);}
+  function evaluate(tree,data){const fit=fitThreshold(tree,data);const complexity=size(tree);return {tree,fit,complexity,training:fit.acc,fitness:fit.acc-0.0025*Math.max(0,complexity-2)};}
+  function evolveSession(opts){
+    const seed=Number(opts.seed||1),r=rng(seed+612299);let population=Math.max(40,Math.min(400,Number(opts.population||140)));
+    let members=seedPopulation(r,population,opts.macro||[]),gen=0,history=[],best=null;
+    const maxSize=Math.max(7,Math.min(25,Number(opts.maxSize||19)));
+    function generation(){const scores=members.map(m=>evaluate(m,opts.train));scores.sort((a,b)=>b.fitness-a.fitness);
+      const review=scores.slice(0,Math.min(scores.length,25)); // candidate selection via validation, not test
+      for(const item of review){item.validation=trainingAccuracy({tree:item.tree,fit:item.fit},opts.validation);item.rank=item.validation-0.001*Math.max(0,item.complexity-2);
+        if(!best||item.rank>best.rank+1e-8||(Math.abs(item.rank-best.rank)<1e-8&&item.complexity<best.complexity))best={...item,tree:clone(item.tree),generation:gen};}
+      history.push({generation:gen,train:scores[0].training,validation:best?best.validation:0,complexity:best?.complexity||0,formula:best?expr(best.tree):''});
+      const next=scores.slice(0,Math.min(8,scores.length)).map(o=>clone(o.tree));
+      const tournament=()=>{let winner=null;for(let i=0;i<4;i++){const candidate=choose(r,scores.slice(0,Math.min(100,scores.length)));if(!winner||candidate.fitness>winner.fitness)winner=candidate;}return winner.tree;};
+      while(next.length<population){let child;const z=r();if(z<.13)child=make(r,randint(r,5)+1);else if(z<.4)child=crossover(tournament(),tournament(),r,maxSize);else child=mutate(tournament(),r,maxSize);
+        if(size(child)>maxSize)child=leaf(r);next.push(child);}
+      members=next;gen++;
+      return {gen,leader:scores[0],best,history:history[history.length-1]};}
+    return {generation,get generationCount(){return gen},get best(){return best},get history(){return history},get popSize(){return population}};
+  }
+  function asSymbol(best){if(!best)return null;return {tree:best.tree,fit:best.fit};}
+  return {rng,tasks,makeSamples,partition,fitLinear,knn,modelAcc,fitThreshold,evalTree,expr,size,clone,accuracy,trainingAccuracy,predict,evolveSession,asSymbol};
+});
+
+</script>
+<script>
+(function(){'use strict';const G=window.GENESIS4, $=id=>document.getElementById(id);
+let dataset,linear,memory,evo,best=null,view='genesis',mode='test',running=false,serial=0,concepts=[],progressCount=0;const maxGen=80;
+const configs=['task','count','region','noise','seed'];function conf(){return {task:$('task').value,samples:+$('count').value,region:$('region').value,noise:+$('noise').value,seed:+$('seed').value||1};}
+function status(v){$('status').textContent=v}
+function currentPredict(which){if(which==='truth')return (x,y)=>G.tasks[conf().task].fn(x,y);if(which==='linear')return linear.predict;
+  if(which==='memory')return memory.predict;if(which==='genesis'&&best){const sym=G.asSymbol(best);return (x,y)=>G.predict(sym,x,y)}return ()=>0;}
+function reset(){serial++;running=false;$('run').disabled=false;$('step').disabled=false;$('pause').disabled=true;const c=conf();dataset=G.partition({task:c.task,samples:c.samples},c.seed,c.noise,c.region);linear=G.fitLinear(dataset.train.concat(dataset.validation));memory=G.knn(dataset.train.concat(dataset.validation));best=null; progressCount=0;evo=null;
+ $('nSamples').textContent=dataset.train.length+dataset.validation.length;$('nValidation').textContent=dataset.validation.length;$('generation').textContent='0';$('complexity').textContent='—';$('formula').textContent='아직 탐색 전';$('fitMeta').textContent='정답 라벨을 활용해 수식을 탐색해. 숨겨진 실제 규칙은 알고리즘에 직접 전달되지 않아.';$('genAcc').textContent='—';$('linAcc').textContent=percent(G.modelAcc(linear,dataset.test));$('memAcc').textContent=percent(G.modelAcc(memory,dataset.test));$('progress').style.width='0%';$('save').disabled=true;status('새 데이터 준비 완료. 진화를 시작해봐.');$('probe').textContent='지도를 클릭하면 해당 지점의 예측을 확인할 수 있어.';
+ startSession();drawAll();}
+function percent(v){return (v*100).toFixed(1)+'%'}
+function startSession(){const c=conf();evo=G.evolveSession({train:dataset.train,validation:dataset.validation,seed:c.seed,population:160,maxSize:19,macro:$('reuse').checked?concepts.map(c=>c.tree):[]});}
+function step(n=1){if(!evo)startSession();for(let i=0;i<n;i++){
+ if(evo.generationCount>=maxGen)break;evo.generation();}
+ best=evo.best;$('generation').textContent=evo.generationCount;$('progress').style.width=(evo.generationCount/maxGen*100)+'%';if(best){$('complexity').textContent=best.complexity;$('formula').textContent='z = '+G.expr(best.tree);$('fitMeta').textContent=`결정: z ${best.fit.right?'>':'<'} ${Number(best.fit.threshold.toFixed(3))} → 클래스 1 · 검증 ${percent(best.validation)} · ${best.generation+1}세대에서 발견`;
+ $('genAcc').textContent=percent(G.accuracy(G.asSymbol(best),dataset.test));$('save').disabled=false;}
+ status(`진화 ${evo.generationCount}/${maxGen}세대 완료 · 최대 19개 노드 · 개체 160개`);drawAll();}
+function run(){if(running)return;if(evo.generationCount>=maxGen){best=null;startSession();}running=true;const token=++serial;$('run').disabled=true;$('step').disabled=true;$('pause').disabled=false;
+ function tick(){if(!running||token!==serial)return;step(4);if(evo.generationCount>=maxGen){running=false;$('run').disabled=false;$('step').disabled=false;$('pause').disabled=true;status('진화 완료. 식을 저장하거나 다른 세계에서 다시 시험해봐.');return;}requestAnimationFrame(tick);}requestAnimationFrame(tick);}
+function pause(){running=false;serial++;$('run').disabled=false;$('step').disabled=false;$('pause').disabled=true;status(`정지됨 · ${evo.generationCount}세대까지 탐색했어.`);}
+function colors(label,alpha=1){return label?`rgba(78,171,152,${alpha})`:`rgba(207,143,100,${alpha})`}
+function heat(ctx,predict,N,withPoints){const c=document.createElement('canvas');c.width=N;c.height=N;const t=c.getContext('2d'),id=t.createImageData(N,N);
+ for(let j=0;j<N;j++)for(let i=0;i<N;i++){const x=2*(i+.5)/N-1,y=1-2*(j+.5)/N;const v=predict(x,y),idx=(j*N+i)*4;id.data[idx]=v?45:112;id.data[idx+1]=v?114:75;id.data[idx+2]=v?104:65;id.data[idx+3]=255;}
+ t.putImageData(id,0,0);ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);ctx.imageSmoothingEnabled=false;ctx.drawImage(c,0,0,ctx.canvas.width,ctx.canvas.height);
+ if(!withPoints)return;
+ const W=ctx.canvas.width;ctx.lineWidth=1;ctx.strokeStyle='#aec1d544';for(let i=1;i<8;i++){const u=i*W/8;ctx.beginPath();ctx.moveTo(u,0);ctx.lineTo(u,W);ctx.moveTo(0,u);ctx.lineTo(W,u);ctx.stroke();}
+ ctx.strokeStyle='#d6e1e58a';ctx.beginPath();ctx.moveTo(W/2,0);ctx.lineTo(W/2,W);ctx.moveTo(0,W/2);ctx.lineTo(W,W/2);ctx.stroke();
+ for(const d of dataset.train){const x=(d.x+1)*W/2,y=(1-d.y)*W/2;ctx.beginPath();ctx.arc(x,y,W/160,0,Math.PI*2);ctx.fillStyle=d.label?'#7ee6ce':'#ffc08c';ctx.fill();ctx.strokeStyle='#0a1d2b';ctx.lineWidth=1.7;ctx.stroke();}}
+function drawAll(){heat($('map').getContext('2d'),currentPredict(view),148,true);for(const [name,id] of [['linear','minLinear'],['memory','minMemory'],['genesis','minGenesis']])heat($(id).getContext('2d'),currentPredict(name),74,false);drawChart();$('maphead').textContent={truth:'숨겨진 실제 규칙',linear:'선형 모델의 예측',memory:'기억 모델의 예측',genesis:'GENESIS 04의 예측'}[view];$('maptag').textContent= view==='truth'?'정답 공간':view==='genesis'&&!best?'아직 학습되지 않은 표현':'모델의 분류 경계';}
+function drawChart(){const can=$('chart'),w=can.width=Math.max(300,can.getBoundingClientRect().width*devicePixelRatio),h=can.height=165*devicePixelRatio,ctx=can.getContext('2d');ctx.clearRect(0,0,w,h);const m={l:31*devicePixelRatio,r:13*devicePixelRatio,t:11*devicePixelRatio,b:25*devicePixelRatio},px=t=>m.l+t/maxGen*(w-m.l-m.r),py=v=>h-m.b-v*(h-m.t-m.b);
+ ctx.strokeStyle='#3a5367';ctx.lineWidth=1*devicePixelRatio;ctx.font=10*devicePixelRatio+'px system-ui';ctx.fillStyle='#9ab5c7';for(const v of [0,.25,.5,.75,1]){const y=py(v);ctx.beginPath();ctx.moveTo(m.l,y);ctx.lineTo(w-m.r,y);ctx.stroke();ctx.fillText(Math.round(v*100)+'%',3*devicePixelRatio,y+3*devicePixelRatio);}for(const v of [0,20,40,60,80])ctx.fillText(String(v),px(v)-4*devicePixelRatio,h-7*devicePixelRatio);
+ if(!evo||!evo.history.length)return;for(const [key,color] of [['train','#f4b47d'],['validation','#67e2be']]){ctx.strokeStyle=color;ctx.lineWidth=2.3*devicePixelRatio;ctx.beginPath();evo.history.forEach((o,i)=>{const x=px(o.generation+1),y=py(o[key]);if(!i)ctx.moveTo(x,y);else ctx.lineTo(x,y);});ctx.stroke();}}
+function renderConcepts(){const el=$('library');$('libraryCount').textContent=concepts.length+'개 저장';el.replaceChildren();if(!concepts.length){const div=document.createElement('div');div.className='fine';div.style.paddingTop='11px';div.textContent='저장된 개념이 없어. 먼저 진화를 실행해봐.';el.appendChild(div);return;}
+ for(const [i,o] of concepts.entries()){const d=document.createElement('div');d.className='concept';const c=document.createElement('div');c.className='code';c.textContent=`C${i+1} = ${G.expr(o.tree)}`;const s=document.createElement('span');s.textContent=o.task;d.append(c,s);el.appendChild(d);}}
+$('run').onclick=run;$('pause').onclick=pause;$('step').onclick=()=>{if(running)pause();step(1)};$('new').onclick=reset;for(const id of configs)$(id).addEventListener('change',reset);
+$('save').onclick=()=>{if(!best)return;const rep=G.expr(best.tree);if(concepts.some(o=>G.expr(o.tree)===rep)){status('이미 보관소에 있는 개념이야.');return;}concepts.push({tree:G.clone(best.tree),task:G.tasks[conf().task].title});if(concepts.length>10)concepts.shift();renderConcepts();status('개념을 저장했어. 다른 세계에서 새 실험을 시작하면 재사용할 수 있어.');};
+$('viewTabs').onclick=e=>{const b=e.target.closest('button[data-v]');if(!b)return;view=b.dataset.v;for(const t of $('viewTabs').querySelectorAll('button'))t.classList.toggle('selected',t===b);drawAll();};
+$('clickTabs').onclick=e=>{const b=e.target.closest('button[data-v]');if(!b)return;mode=b.dataset.v;for(const t of $('clickTabs').querySelectorAll('button'))t.classList.toggle('selected',t===b);};
+$('map').onclick=e=>{const r=$('map').getBoundingClientRect(),x=Math.min(1,Math.max(-1,(e.clientX-r.left)/r.width*2-1)),y=Math.min(1,Math.max(-1,1-(e.clientY-r.top)/r.height*2));const truth=G.tasks[conf().task].fn(x,y);
+ if(mode==='observe'){if(running)pause();const rr=G.rng(conf().seed+dataset.train.length*157),label=rr()<conf().noise?1-truth:truth;dataset.train.push({x,y,truth,label});linear=G.fitLinear(dataset.train.concat(dataset.validation));memory=G.knn(dataset.train.concat(dataset.validation));best=null;startSession();$('generation').textContent='0';$('nSamples').textContent=dataset.train.length+dataset.validation.length;$('linAcc').textContent=percent(G.modelAcc(linear,dataset.test));$('memAcc').textContent=percent(G.modelAcc(memory,dataset.test));$('genAcc').textContent='—';$('formula').textContent='새로운 관측이 추가되어 탐색을 초기화했어.';$('complexity').textContent='—';$('progress').style.width='0%';$('save').disabled=true;status('관측을 추가했어. 진화를 다시 시작해봐.');}
+ const p=best?G.predict(G.asSymbol(best),x,y):null;$('probe').textContent=`좌표 (${x.toFixed(2)}, ${y.toFixed(2)}) · 정답 ${truth} · 선형 ${linear.predict(x,y)} · 기억 ${memory.predict(x,y)} · GENESIS ${p===null?'미학습':p}`;drawAll();};
+$('csv').onclick=()=>{const rows=[['task','seed','sample_count','generation','train_accuracy','validation_accuracy','test_accuracy','formula'],[conf().task,conf().seed,dataset.train.length+dataset.validation.length,evo?.generationCount||0,best?.training??'',best?.validation??'',best?G.accuracy(G.asSymbol(best),dataset.test):'',best?G.expr(best.tree):'']];for(const h of evo?.history||[])rows.push([conf().task,conf().seed,dataset.train.length+dataset.validation.length,h.generation+1,h.train,h.validation,'',h.formula]);const csv=rows.map(a=>a.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(',')).join('\r\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='genesis04_'+conf().task+'_seed'+conf().seed+'.csv';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(link.href),1500);};
+window.addEventListener('resize',()=>drawChart());reset();
+})();
+</script></body></html>
